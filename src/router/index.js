@@ -7,6 +7,7 @@ import FrontLearn from '../components/front/frontLearn'
 import BackLearn from '../components/back/backLearn'
 import zxyaily from '../components/aboutUs/zxyaily'
 import ContentLayout from '../components/layout/contentLayout'
+import develop from '../components/develop/develop'
 // import sideBar from '../components/reuse/sideBar'
 
 // import header from '../components/reuse/header'
@@ -15,6 +16,11 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path: '/develop',
+      name: 'develop',
+      component: develop
+    },
     {
       path: '/',
       name: 'MainLayout',
