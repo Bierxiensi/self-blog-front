@@ -21,17 +21,21 @@
 <template>
   <div id="main">
     <Layout id="main_layout">
-      <myHeader></myHeader>
+      <zxyaily-header></zxyaily-header>
+      <!--<main-introduce></main-introduce>-->
       <router-view></router-view>
-      <Footer class="layout-footer-center">2019-2099 &copy; TalkingData</Footer>
+      <!--<Footer class="layout-footer-center">2019-2099 &copy; TalkingData</Footer>-->
+      <BackTop></BackTop>
     </Layout>
   </div>
 </template>
 <script>
-import myHeader from '../reuse/header'
+import zxyailyHeader from '@/components/reuse/header'
+import mainIntroduce from '@/components/reuse/mainIntroduce'
 export default {
   components: {
-    myHeader
+    zxyailyHeader,
+    mainIntroduce
   },
   data () {
     return {

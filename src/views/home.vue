@@ -1,59 +1,39 @@
 <template>
-  <div >
-    <div id="backImg">
-      <img src="../assets/yz/timg.jpg" id="bg_blur">
-    </div>
-    <Divider />
-    <div id="main">
-      <Row style="background:#F4F6F8;padding:1em">
-        <Col span="1" offset="7">
-          <Card style="width:164px;border-radius:50%">
-            <div style="text-align:center;">
-              <img src="../assets/yz/zongjie.jpg" style="border-radius:64px">
-            </div>
-            <p>111</p>
-          </Card>
-        </Col>
-        <Col span="1" offset="7">
-          <Card style="width:164px;border-radius:50%">
-            <div style="text-align:center">
-              <img src="../assets/yz/boniu.jpg" style="border-radius:64px">
-            </div>
-            <p>111</p>
-          </Card>
-        </Col>
-      </Row>
-    </div>
-    <div id="body">
+  <div>
     <!-- Vertical Timeline -->
     <section id="conference-timeline">
       <Divider style="border: #00b0bd solid 5px"/>
-      <div class="timeline-start">Start</div>
+      <div class="timeline-start">Start</div>/
       <div class="conference-center-line"></div>
       <div class="conference-timeline-content">
-        <!-- Article -->
-        <div class="timeline-article">
-          <div class="content-left-container">
-            <div class="content-left">
-              <p>这里是内容<span class="article-number">01</span></p>
-            </div>
-          </div>
-          <div class="content-right-container">
-            <div class="content-right">
-              <Card style="width:320px">
-                <div style="text-align:center">
-                  <img src="../assets/logo.png">
-                  <h3>A high quality UI Toolkit based on Vue.js</h3>
+        <!-- Article v-for="article in lyArticleList" :key="article.articleId" v-if="article.author === 'zxy'"-->
+        <div class="timeline-article" v-for="article in homePageArticleList" :key="article.articleId">
+<!--          <div v-for="article in zxyArticleList" :key="article.articleId">-->
+            <div class="content-left-container" v-show="article.author === 'zxy'" @click="selectArticalById(article.articleId)" style="border: 1px solid red; cursor: pointer">
+              <div class="content-left" style="display: grid; grid-template-rows: 4vh 15vh 4vh; text-align: left">
+                <div><span class="article-number">01</span></div>
+                <div v-html="article.content" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"></div>
+                <div style="display: grid; grid-template-columns: 8vw 3vw 10vw; align-items: center">
+                  <div><Icon type="ios-time" size="20"/>{{article.createTime}}</div>
+                  <div><Icon type="ios-person-outline" size="24"/>{{article.author}}</div>
+                  <div><Icon type="ios-bookmark-outline" size="24"/><Tag color="primary" v-for="tag in article.tag" :key="tag">{{tag}}</Tag></div>
                 </div>
-              </Card>
-              <Tag checkable color="primary">标签一</Tag>
-              <Tag checkable color="success">标签二</Tag>
-              <Tag checkable color="error">标签三</Tag>
-              <Tag checkable color="warning">标签四</Tag>
-<!--              <p>这里是内容-->
-<!--                <span class="article-number">02</span></p>-->
+              </div>
             </div>
-          </div>
+<!--          </div>-->
+<!--          <div v-for="article in lyArticleList" :key="article.articleId">-->
+            <div class="content-right-container" v-show="article.author === 'ly'" @click="selectArticalById(article.articleId)" style="border: 1px solid red; cursor: pointer">
+              <div class="content-right" style="display: grid; grid-template-rows: 4vh 15vh 4vh; text-align: left">
+                <div><span class="article-number">01</span></div>
+                <div v-html="article.content" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"></div>
+                <div style="display: grid; grid-template-columns: 8vw 3vw 10vw; align-items: center">
+                  <div><Icon type="ios-time" size="20"/>{{article.createTime}}</div>
+                  <div><Icon type="ios-person-outline" size="24"/>{{article.author}}</div>
+                  <div><Icon type="ios-bookmark-outline" size="24"/><Tag color="primary" v-for="tag in article.tag" :key="tag">{{tag}}</Tag></div>
+                </div>
+              </div>
+            </div>
+<!--          </div>-->
           <div class="meta-date">
             <span class="date">18</span>
             <span class="month">APR</span>
@@ -63,54 +43,65 @@
       </div>
       <div class="timeline-end">End</div>
     </section>
-    <!-- // Vertical Timeline -->
-    </div>
-    <BackTop></BackTop>
+    <!-- // Vertical Timeline // mapActions,  -->
   </div>
 </template>
 
 <script>
+import pageMixin from '@/mixins/pageMixin'
+import { mapState } from 'vuex'
+// import { GET_HOME_PAGE_ARTICLE_LIST } from '@/store/actions'
 export default {
+  mixins: [pageMixin],
   mounted () {
     // this.$refs.dotted.style.left = this.$refs.circular[0].offsetLeft - 12 + 'px'
+    console.log(68, this.listData, this.homePageArticleList, this.zxyArticleList, this.lyArticleList)
   },
   data () {
     return {
       date: '',
-      month: ''
+      month: '',
+      listData: this.$store.state.article.homePageArticleList
+    }
+  },
+  computed: {
+    ...mapState({
+      homePageArticleList: (state) => state.article.homePageArticleList,
+      zxyArticleList: (state) => state.article.zxyArticleList,
+      lyArticleList: (state) => state.article.lyArticleList
+    })
+  },
+  methods: {
+    // ...mapActions(['GET_HOME_PAGE_ARTICLE_LIST']),
+    async requestListData () {
+      let payload = {
+        currentPage: 0,
+        pageSize: 10
+      }
+      await this.$store.dispatch('article/GET_HOME_PAGE_ARTICLE_LIST', payload)
+      await this.$store.dispatch('article/GET_ZXY_ARTICLE_LIST', payload)
+      await this.$store.dispatch('article/GET_LY_ARTICLE_LIST', payload)
+      // this.$axios.get('http://127.0.0.1:5000/article/getAllArticleByPaginate', {
+      //   params: {
+      //     currentPage: 0,
+      //     pageSize: 10
+      //   }}).then(res => {
+      //   this.listData = res.data.data
+      //   console.log(res.data.data)
+      // })
+    },
+    selectArticalById (article) {
+      this.$Message.success('selectArticalById')
+      sessionStorage.setItem('articleId', article.articleId)
+      // this.$store.commit('home/get_article_id', article.articleId)
+      // this.$router.push({name: 'content', params: {article: article}})
+      this.$router.push('/zxyaily/content')
     }
   }
 }
 </script>
 
 <style scoped>
-#backImg {
-  width: 100%;
-  height: 450px;
-}
-div img{
-  width: 100%;
-  height: 100%;
-  object-fit:cover;
-  z-index: -5;
-}
-#bg_blur {  /*背景虚化*/
-  /*-webkit-filter: blur(10px); !* Chrome, Opera *!*/
-  /*-moz-filter: blur(10px);*/
-  /*-ms-filter: blur(10px);*/
-  /*filter: blur(10px);*/
-}
-#main {
-  margin-top: 3em;
-  text-align: center;
-}
-/*外部css样式*/
-body {
-  /*background: #e6e6e6;*/
-  /*font-family: "Roboto", sans-serif;*/
-  /*font-weight: 400;*/
-}
-
 /*===== Vertical Timeline =====*/
 #conference-timeline {
   position: relative;
@@ -138,8 +129,7 @@ body {
 #conference-timeline .conference-center-line {
   position: absolute;
   width: 3px;
-  height: 100%;
-  /*top: 0;*/
+  height: 90%;
   left: 50%;
   margin-left: -2px;
   background: #00b0bd;
@@ -282,7 +272,6 @@ body {
   .timeline-article p span.article-number {
     display: none;
   }
-
 }
 /*===== // Resonsive Vertical Timeline =====*/
 </style>

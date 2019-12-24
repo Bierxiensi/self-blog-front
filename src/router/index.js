@@ -1,26 +1,26 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import MainLayout from '../components/layout/mainLayout'
-import Home from '../components/home'
+import MainLayout from '../views/mainLayout'
+import Home from '../views/home'
 import FrontLearn from '../components/front/frontLearn'
 import BackLearn from '../components/back/backLearn'
 import zxyaily from '../components/aboutUs/zxyaily'
-import ContentLayout from '../components/layout/contentLayout'
-import develop from '../components/develop/develop'
+import ContentLayout from '../views/contentLayout'
+// import develop from '../components/develop/develop'
+import content from '../components/reuse/content'
 // import sideBar from '../components/reuse/sideBar'
-
 // import header from '../components/reuse/header'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    {
-      path: '/develop',
-      name: 'develop',
-      component: develop
-    },
+    // {
+    //   path: '/content',
+    //   name: 'content',
+    //   component: content
+    // },
     {
       path: '/',
       name: 'MainLayout',
@@ -35,8 +35,13 @@ export default new Router({
           path: 'zxyaily',
           name: 'contentLayout',
           component: ContentLayout,
-          redirect: '/zxyaily/frontLearn',
+          redirect: '/zxyaily/content',
           children: [
+            {
+              path: 'content',
+              name: 'content',
+              component: content
+            },
             {
               path: 'frontLearn',
               name: 'frontLearn',
