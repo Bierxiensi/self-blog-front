@@ -6,6 +6,9 @@ const axios = getAxios({
 })
 
 export default {
+  getZxyAndLyArticleList (payload) {
+    return axios.get(`/article/getZxyAndLyArticleByPaginate?currentPage=${payload.currentPage}&pageSize=${payload.pageSize}`)
+  },
   getHomePageArticleList (payload) {
     return axios.get(`/article/getAllArticleByPaginate?currentPage=${payload.currentPage}&pageSize=${payload.pageSize}`)
   },

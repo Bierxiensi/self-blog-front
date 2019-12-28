@@ -1,62 +1,97 @@
 <template>
-  <div>
-    <!-- Vertical Timeline -->
-    <section id="conference-timeline">
-      <Divider style="border: #00b0bd solid 5px"/>
-      <div class="timeline-start">Start</div>/
-      <div class="conference-center-line"></div>
-      <div class="conference-timeline-content">
-        <!-- Article v-for="article in lyArticleList" :key="article.articleId" v-if="article.author === 'zxy'"-->
-        <div class="timeline-article" v-for="article in homePageArticleList" :key="article.articleId">
-<!--          <div v-for="article in zxyArticleList" :key="article.articleId">-->
-            <div class="content-left-container" v-show="article.author === 'zxy'" @click="selectArticalById(article.articleId)" style="border: 1px solid red; cursor: pointer">
-              <div class="content-left" style="display: grid; grid-template-rows: 4vh 15vh 4vh; text-align: left">
-                <div><span class="article-number">01</span></div>
-                <div v-html="article.content" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"></div>
-                <div style="display: grid; grid-template-columns: 8vw 3vw 10vw; align-items: center">
-                  <div><Icon type="ios-time" size="20"/>{{article.createTime}}</div>
-                  <div><Icon type="ios-person-outline" size="24"/>{{article.author}}</div>
-                  <div><Icon type="ios-bookmark-outline" size="24"/><Tag color="primary" v-for="tag in article.tag" :key="tag">{{tag}}</Tag></div>
-                </div>
-              </div>
+    <div>
+      <section id=timeline>
+       <div class="demo-card-wrapper">
+          <div class="demo-card demo-card--step1" v-for="article in homePageArticleList" :key="article.articleId">
+            <div class="head">
+<!--              <div class="number-box">-->
+<!--                <span>01</span>-->
+<!--              </div>-->
+              <h2><span class="small">Subtitle</span> {{article.title}}</h2>
             </div>
-<!--          </div>-->
-<!--          <div v-for="article in lyArticleList" :key="article.articleId">-->
-            <div class="content-right-container" v-show="article.author === 'ly'" @click="selectArticalById(article.articleId)" style="border: 1px solid red; cursor: pointer">
-              <div class="content-right" style="display: grid; grid-template-rows: 4vh 15vh 4vh; text-align: left">
-                <div><span class="article-number">01</span></div>
-                <div v-html="article.content" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"></div>
-                <div style="display: grid; grid-template-columns: 8vw 3vw 10vw; align-items: center">
-                  <div><Icon type="ios-time" size="20"/>{{article.createTime}}</div>
-                  <div><Icon type="ios-person-outline" size="24"/>{{article.author}}</div>
-                  <div><Icon type="ios-bookmark-outline" size="24"/><Tag color="primary" v-for="tag in article.tag" :key="tag">{{tag}}</Tag></div>
-                </div>
-              </div>
+            <div class="body">
+              <p>111</p>
+<!--              <p v-html="article.content" style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;"></p>-->
+              <img src="http://placehold.it/1000x500" alt="Graphic">
             </div>
-<!--          </div>-->
-          <div class="meta-date">
-            <span class="date">18</span>
-            <span class="month">APR</span>
           </div>
+
+<!--          <div class="demo-card demo-card&#45;&#45;step2">-->
+<!--            <div class="head">-->
+<!--              <div class="number-box">-->
+<!--                <span>02</span>-->
+<!--              </div>-->
+<!--              <h2><span class="small">Subtitle</span> Confidence</h2>-->
+<!--            </div>-->
+<!--            <div class="body">-->
+<!--              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta reiciendis deserunt doloribus consequatur, laudantium odio dolorum laboriosam.</p>-->
+<!--              <img src="http://placehold.it/1000x500" alt="Graphic">-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="demo-card demo-card&#45;&#45;step3">-->
+<!--            <div class="head">-->
+<!--              <div class="number-box">-->
+<!--                <span>03</span>-->
+<!--              </div>-->
+<!--              <h2><span class="small">Subtitle</span> Adaptation</h2>-->
+<!--            </div>-->
+<!--            <div class="body">-->
+<!--              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta reiciendis deserunt doloribus consequatur, laudantium odio dolorum laboriosam.</p>-->
+<!--              <img src="http://placehold.it/1000x500" alt="Graphic">-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="demo-card demo-card&#45;&#45;step4">-->
+<!--            <div class="head">-->
+<!--              <div class="number-box">-->
+<!--                <span>04</span>-->
+<!--              </div>-->
+<!--              <h2><span class="small">Subtitle</span> Consistency</h2>-->
+<!--            </div>-->
+<!--            <div class="body">-->
+<!--              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta reiciendis deserunt doloribus consequatur, laudantium odio dolorum laboriosam.</p>-->
+<!--              <img src="http://placehold.it/1000x500" alt="Graphic">-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="demo-card demo-card&#45;&#45;step5">-->
+<!--            <div class="head">-->
+<!--              <div class="number-box">-->
+<!--                <span>05</span>-->
+<!--              </div>-->
+<!--              <h2><span class="small">Subtitle</span> Conversion</h2>-->
+<!--            </div>-->
+<!--            <div class="body">-->
+<!--              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta reiciendis deserunt doloribus consequatur, laudantium odio dolorum laboriosam.</p>-->
+<!--              <img src="http://placehold.it/1000x500" alt="Graphic">-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--         <div class="demo-card demo-card&#45;&#45;step6">-->
+<!--           <div class="head">-->
+<!--             <div class="number-box">-->
+<!--               <span>06</span>-->
+<!--             </div>-->
+<!--             <h2><span class="small">Subtitle</span> Conversion</h2>-->
+<!--           </div>-->
+<!--           <div class="body">-->
+<!--             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta reiciendis deserunt doloribus consequatur, laudantium odio dolorum laboriosam.</p>-->
+<!--             <img src="http://placehold.it/1000x500" alt="Graphic">-->
+<!--           </div>-->
+<!--         </div>-->
+
         </div>
-        <!-- // Article -->
-      </div>
-      <div class="timeline-end">End</div>
-    </section>
-    <!-- // Vertical Timeline // mapActions,  -->
-  </div>
+      </section>
+    </div>
 </template>
 
 <script>
 import pageMixin from '@/mixins/pageMixin'
 import { mapState } from 'vuex'
-// import { GET_HOME_PAGE_ARTICLE_LIST } from '@/store/actions'
 export default {
+  name: 'home',
   mixins: [pageMixin],
-  mounted () {
-    // this.$refs.dotted.style.left = this.$refs.circular[0].offsetLeft - 12 + 'px'
-    console.log(68, this.listData, this.homePageArticleList, this.zxyArticleList, this.lyArticleList)
-  },
   data () {
     return {
       date: '',
@@ -72,7 +107,6 @@ export default {
     })
   },
   methods: {
-    // ...mapActions(['GET_HOME_PAGE_ARTICLE_LIST']),
     async requestListData () {
       let payload = {
         currentPage: 0,
@@ -81,16 +115,8 @@ export default {
       await this.$store.dispatch('article/GET_HOME_PAGE_ARTICLE_LIST', payload)
       await this.$store.dispatch('article/GET_ZXY_ARTICLE_LIST', payload)
       await this.$store.dispatch('article/GET_LY_ARTICLE_LIST', payload)
-      // this.$axios.get('http://127.0.0.1:5000/article/getAllArticleByPaginate', {
-      //   params: {
-      //     currentPage: 0,
-      //     pageSize: 10
-      //   }}).then(res => {
-      //   this.listData = res.data.data
-      //   console.log(res.data.data)
-      // })
     },
-    selectArticalById (article) {
+    selectArticleById (article) {
       this.$Message.success('selectArticalById')
       sessionStorage.setItem('articleId', article.articleId)
       // this.$store.commit('home/get_article_id', article.articleId)
@@ -101,177 +127,263 @@ export default {
 }
 </script>
 
-<style scoped>
-/*===== Vertical Timeline =====*/
-#conference-timeline {
-  position: relative;
-  max-width: 1420px;
-  width: 100%;
-  margin: 0 auto;
-}
-/*起点、终点*/
-#conference-timeline .timeline-start,
-#conference-timeline .timeline-end {
-  display: table;
-  font-family: "Roboto", sans-serif;
-  font-size: 18px;
-  font-weight: 900;
-  text-transform: uppercase;
-  background: #00b0bd;
-  padding: 15px 23px;
-  /*color: #fff;*/
-  /*max-width: 5%;*/
-  /*width: 100%;*/
-  /*text-align: center;*/
-  margin: 0 auto;
-}
-/*左右分割线*/
-#conference-timeline .conference-center-line {
-  position: absolute;
-  width: 3px;
-  height: 90%;
-  left: 50%;
-  margin-left: -2px;
-  background: #00b0bd;
-  z-index: 0;
-}
-#conference-timeline .conference-timeline-content {
-  padding-top: 67px;
-  padding-bottom: 67px;
-}
-.timeline-article {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-  margin: 20px 0;
-}
-.timeline-article .content-left-container,
-.timeline-article .content-right-container {
-  max-width: 44%;
-  width: 100%;
-}
-.timeline-article .content-left,
-.timeline-article .content-right {
-  position: relative;
-  width: auto;
-  border: 1px solid #ddd;
-  background-color: #fff;
-  box-shadow: 0 1px 3px rgba(0,0,0,.03);
-  padding: 27px 25px;
-}
-.timeline-article p {
-  margin: 0 0 0 60px;
-  padding: 0;
-  font-weight: 400;
-  color: #242424;
-  font-size: 14px;
-  line-height: 24px;
-  position: relative;
-}
-.timeline-article p span.article-number {
-  position: absolute;
-  font-weight: 300;
-  font-size: 44px;
-  top: 10px;
-  left: -60px;
-  color: #00b0bd;
-}
-.timeline-article .content-left-container {
-  float: left;
-}
-.timeline-article .content-right-container {
-  float: right;
-}
-.timeline-article .content-left:before,
-.timeline-article .content-right:before{
-  position: absolute;
-  top: 20px;
-  font-size: 23px;
-  font-family: "FontAwesome";
-  color: #fff;
-}
-.timeline-article .content-left:before {
-  content: "\f0da";
-  right: -8px;
-}
-.timeline-article .content-right:before {
-  content: "\f0d9";
-  left: -8px;
-}
-.timeline-article .meta-date {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 62px;
-  height: 62px;
-  margin-left: -31px;
-  color: #fff;
-  border-radius: 100%;
-  background: #00b0bd;
-}
-.timeline-article .meta-date .date,
-.timeline-article .meta-date .month {
-  display: block;
-  text-align: center;
-  font-weight: 900;
-}
-.timeline-article .meta-date .date {
-  font-size: 30px;
-  line-height: 40px;
-}
-.timeline-article .meta-date .month {
-  font-size: 18px;
-  line-height: 10px;
-}
-/*===== // Vertical Timeline =====*/
+<style lang="scss" rel="stylesheet/scss" scoped>
+  /* Media Queries */
 
-/*===== Resonsive Vertical Timeline =====*/
-@media only screen and (max-width: 830px) {
-  #conference-timeline .timeline-start,
-  #conference-timeline .timeline-end {
-    margin: 0;
+  @mixin mq-xs {
+    @media (min-width: 320px) {
+      @content;
+    }
   }
-  #conference-timeline .conference-center-line {
-    margin-left: 0;
-    left: 50px;
+
+  @mixin mq-sm {
+    @media (min-width: 480px) {
+      @content;
+    }
   }
-  .timeline-article .meta-date {
-    margin-left: 0;
-    left: 20px;
+
+  @mixin mq-md {
+    @media (min-width: 720px) {
+      @content;
+    }
   }
-  .timeline-article .content-left-container,
-  .timeline-article .content-right-container {
-    max-width: 100%;
-    width: auto;
-    float: none;
-    margin-left: 110px;
-    min-height: 53px;
+
+  @mixin mq-lg {
+    @media (min-width: 1000px) {
+      @content;
+    }
   }
-  .timeline-article .content-left-container {
+
+  $background: #f7f7f7;
+  $box-shadow: 0px 1px 22px 4px rgba(0, 0, 0, 0.07);
+  $border: 1px solid rgba(191, 191, 191, 0.4);
+  $items: 5;
+  $rows: ceil($items/2);
+
+  /* Card sizing */
+
+  $card-height: 400px;
+  $card-width: 450px;
+  $inner-margin: 15px;
+  $number-size: 35px;
+  $stagger: 180px;
+  $outer-margin: 90px;
+  $marker-size: 9px;
+
+  /* Colors */
+
+  $steps: #46b8e9;
+  $colors: #46b8e9,
+   #3ee9d1,
+   #ce43eb,
+   #4d92eb;
+  $timeline: #bdbdbd;
+
+  /* Calculations */
+
+  $container-height: $rows * ($card-height + $outer-margin) + $stagger;
+  $container-width: $card-width*2 + $outer-margin*3;
+  $head-height: $number-size + 50;
+  $body-height: $card-height - $head-height;
+  $marker-dist: $card-width + $outer-margin/2 - $marker-size/2;
+
+  /* Placeholders */
+
+  @include mq-lg {
+  %arrow {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+  }
+  %marker {
+     position: absolute;
+     content: "";
+     width: $marker-size;
+     height: $marker-size;
+     background-color: $timeline;
+     border-radius: $marker-size;
+     box-shadow: 0px 0px 2px 8px $background;
+   }
+  }
+
+  /* Some Cool Stuff */
+
+  $counter: $items - $rows + 2;
+  @for $i from 1 through $rows {
+    .demo-card:nth-child(#{$i*2-1})   { order: $i }
+    .demo-card:nth-child(#{$i*2})     { order: $counter }
+  $counter: $counter + 1;
+  }
+
+  /* Border Box */
+
+  * {
+    box-sizing: border-box;
+  }
+
+  /* Fonts */
+
+  body {
+    font-family: Roboto;
+  }
+
+  #timeline {
+    padding: 100px 0;
+    background: $background;
+    border-top: $border;
+    border-bottom: $border;
+  h1 {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 200;
     margin-bottom: 20px;
   }
-  .timeline-article .content-left,
-  .timeline-article .content-right {
-    padding: 10px 25px;
-    min-height: 65px;
+  p.leader {
+    text-align: center;
+    max-width: 90%;
+    margin: auto;
+    margin-bottom: 45px;
   }
-  .timeline-article .content-left:before {
-    content: "\f0d9";
-    right: auto;
-    left: -8px;
+  .demo-card-wrapper {
+    position: relative;
+    margin: auto;
+  @include mq-lg {
+    display: flex;
+    flex-flow: column wrap;
+    width: $container-width;
+    height: $container-height;
+    margin: 0 auto;
   }
-  .timeline-article .content-right:before {
-    display: none;
+  &::after {
+     z-index: 1;
+     content: "";
+     position: absolute;
+     top: 0;
+     bottom: 0;
+     left: 50%;
+     border-left: $border;
+  @include mq-lg {
+    border-left: 1px solid $timeline;
   }
-}
-@media only screen and (max-width: 400px) {
-  .timeline-article p {
+  }
+  }
+  .demo-card {
+    position: relative;
+    display: block;
+    margin: 10px auto 80px;
+    max-width: 94%;
+    z-index: 2;
+  @include mq-sm {
+    max-width: 60%;
+    box-shadow: $box-shadow;
+  }
+  @include mq-md {
+    max-width: 40%;
+  }
+  @include mq-lg {
+    max-width: $card-width;
+    height: $card-height;
+    margin: $outer-margin;
+    margin-top: $outer-margin/2;
+    margin-bottom: $outer-margin/2;
+  &:nth-child(odd) {
+     margin-right: $outer-margin/2;
+    .head::after {
+    @extend %arrow;
+      border-left-width: 15px;
+      border-left-style: solid;
+      left: 100%;
+    }
+    .head::before {
+    @extend %marker;
+      left: $marker-dist + 1;
+    }
+  }
+  &:nth-child(even) {
+     margin-left: $outer-margin/2;
+  .head::after {
+  @extend %arrow;
+    border-right-width: 15px;
+    border-right-style: solid;
+    right: 100%;
+  }
+  .head::before {
+  @extend %marker;
+    right: $marker-dist - 1;
+  }
+  }
+  &:nth-child(2) {
+     margin-top: $stagger;
+   }
+  }
+  .head {
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-weight: 400;
+  .number-box {
+    display: inline;
+    float: left;
+    margin: $inner-margin;
+    padding: 10px;
+    font-size: $number-size;
+    line-height: $number-size;
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.17);
+  }
+  h2 {
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    font-weight: inherit;
+    letter-spacing: 2px;
     margin: 0;
+    padding-bottom: 6px;
+    line-height: 1rem;
+  @include mq-sm {
+    font-size: 165%;
+    line-height: 1.2rem;
   }
-  .timeline-article p span.article-number {
-    display: none;
+  span {
+    display: block;
+    font-size: 0.6rem;
+    margin: 0;
+  @include mq-sm {
+    font-size: 0.8rem;
   }
-}
-/*===== // Resonsive Vertical Timeline =====*/
+  }
+  }
+  }
+  .body {
+    background: #fff;
+    border: $border;
+    border-top: 0;
+    padding: $inner-margin;
+  @include mq-lg {
+    height: $body-height;
+  }
+  p {
+    font-size: 14px;
+    line-height: 18px;
+    margin-bottom: $inner-margin;
+  }
+  img {
+    display: block;
+    width: 100%;
+  }
+  }
+  @for $i from 1 through $items {
+  &--step#{$i} {
+    $color: nth($colors, ((($i - 1) % 4) + 1));
+    background-color: $color;
+    .head::after {
+      border-color: $color;
+    }
+  }
+  }
+  }
+  }
 </style>

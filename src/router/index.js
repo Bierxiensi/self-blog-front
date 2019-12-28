@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import MainLayout from '../views/mainLayout'
-import Home from '../views/home'
+import Home from '../views/home1'
 import FrontLearn from '../components/front/frontLearn'
 import BackLearn from '../components/back/backLearn'
 import zxyaily from '../components/aboutUs/zxyaily'
@@ -11,16 +11,17 @@ import ContentLayout from '../views/contentLayout'
 import content from '../components/reuse/content'
 // import sideBar from '../components/reuse/sideBar'
 // import header from '../components/reuse/header'
+import test from '../views/home'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
-    // {
-    //   path: '/content',
-    //   name: 'content',
-    //   component: content
-    // },
+    {
+      path: '/test',
+      name: 'content',
+      component: test
+    },
     {
       path: '/',
       name: 'MainLayout',

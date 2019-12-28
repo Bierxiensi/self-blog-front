@@ -1,7 +1,9 @@
 <template>
   <div>
-    <div id="backImg">
-      <img src="@/assets/yz/timg.jpg" id="bg_blur">
+    <!--<div id="backImg">-->
+    <!--<img src="@/assets/yz/timg.jpg" id="bg_blur">-->
+    <div>
+      <img src="http://www.jzdlink.com/wordpress/wp-content/uploads/2017/12/banner.jpg">
     </div>
     <Divider/>
     <div id="main">
@@ -49,7 +51,7 @@ export default {
     z-index: -5;
   }
   div img {  /*背景虚化*/
-    -webkit-filter: blur(10px); /* Chrome, Opera */
+    /*-webkit-filter: blur(10px); !* Chrome, Opera *!*/
     /*-moz-filter: blur(10px);*/
     /*-ms-filter: blur(10px);*/
     /*filter: blur(10px);*/
