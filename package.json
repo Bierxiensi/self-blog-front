@@ -19,7 +19,7 @@
     "iview": "^3.5.0",
     "marked": "^0.7.0",
     "mavon-editor": "^2.7.7",
-    "qs": "^6.8.0",
+    "qs": "^6.8.3",
     "showdown": "^1.9.1",
     "stylus-loader": "^3.0.2",
     "tt-vue-editor": "^2.1.26",
